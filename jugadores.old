@@ -1,0 +1,66 @@
+"""
+# Jugadores
+Aloja a los jugadores en una lista y sus datos en un diccionario.
+Tienen esta estructura:
+- Jugador {'nombre' : 'jugador1', 'vida' : VIDA_INICIAL, 'bot' : True | False}
+"""
+VIDA_INICIAL = 4
+jugadores = []
+
+nombres = ('Lucía', 'Roberto', 'Belén', 'Alicia',
+           'Juan', 'Paloma', 'Natalia', 'Josemi','Andrés', 'Isabel', 'Pablo','Álex',
+           'Vicenta', 'Marisa', 'Concha', 'Mauri', 'Fernando',
+           'Emilio', 'Mariano',
+           )
+
+def crear_jugador(nombre_jugador, es_bot):
+        """Crea un jugador y lo añade a la lista de jugadores."""
+        jugadores.append({'nombre' : nombre_jugador, 'vida' : VIDA_INICIAL, 'bot' : es_bot})
+
+def borrar_jugador(jugador):
+        """Borra un jugador de la lista de jugadores."""
+        jugadores.remove(jugador)
+
+def vida(jugador):
+        """Devuelve la vida del jugador pasado como argumento."""
+        return jugador['vida']
+
+def nombre(jugador):
+        """Devuelve el nombre del jugador pasado como argumento."""
+        return jugador['nombre']
+
+def modificar_vida(valor, jugador):
+        """Modifica la vida del jugador pasado como argumento.
+        - Args:
+                - valor (int): Ea cantidad de vida que se quiere sumar o restar.
+                - jugador: El jugador al que vamos a modificar su vida.
+        """
+        jugador['vida'] = jugador['vida'] + (valor)
+        """
+        [¿Es lógico que el módulo jugadores elimine a los jugadores vencidos?]
+        if jugador['vida'] <= 0:
+                borrar_jugador(jugador)
+        """
+
+def asignar_jugadores():
+        """
+        Creador interactivo de jugadores. Solicita nombre y
+        """
+    num_jugadores = int(input('¿Cuántos van a jugar esta vez?: '))
+    for i in range(num_jugadores):
+        nombre_jugador = input('¿Nombre del jugador?: ')
+        try:
+            respuesta = input('¿Es un bot (S/N)?: ').upper()
+            if respuesta == 'S' or respuesta =='Y':
+                crear_jugador(nombre_jugador, True)
+            elif respuesta == 'N':
+                crear_jugador(nombre_jugador, False)
+        except ValueError:
+                print('Por favor, elige una opción válida.')
+
+def asignar_bots():
+        num_bots = int(input('¿Cuántos bots?: '))
+        for i in range(num_bots):
+
+
+# def devolver_vida:
