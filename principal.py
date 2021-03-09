@@ -8,12 +8,13 @@ def principal():
     repartir_mesa(3)
     mostrar_mesa()
 
-    print(f'Baraja descubierta:\n{Naipe.mostrar_baraja()}')
+    print(f'Naipes restantes:\n{Naipe.mostrar_baraja()}')
 
-    repartir_mesa(1)
+    recoger_mesa()
+
     mostrar_mesa()
 
-    print(f'Naipes restantes:\n{Naipe.mostrar_baraja()}')
+    print(f'Baraja devuelta:\n{Naipe.mostrar_baraja()}')
 
 
 def repartir_mesa(num_cartas):
@@ -23,6 +24,10 @@ def repartir_mesa(num_cartas):
 def mostrar_mesa():
     for jugador in Jugador.jugadores():
         print(jugador)
+
+def recoger_mesa():
+    for jugador in Jugador.jugadores():
+        jugador.devolver_mano()
 
 if __name__ == "__main__":
     principal()

@@ -53,7 +53,7 @@ class Carta:
         Parámetros:
             - seleccion: int -> La n-ésima carta de la baraja.
         """
-        return f'[{self.corta()}] - {self.larga()}'
+        return f'[{self.corta()}]: {self.larga()}'
 
     # Métodos estáticos
     @staticmethod
