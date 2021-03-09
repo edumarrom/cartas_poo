@@ -1,3 +1,5 @@
+# ¿Traerme funciones del repartidor aquí?
+from random import shuffle as mezclar
 """
 # Cartas.
 - Las cartas son 4:
@@ -6,30 +8,27 @@
     - 2. Fracaso: - 1 de vida.
     - 3. Gran Fracaso: - 2 de vida.
 """
-# ¿Traerme funciones del repartidor aquí?
-from random import shuffle as mezclar
 
-class Carta:
-    def __init__(self, valor):
-        self.__valor = valor
+GE,E, F, GF = range(4)
+baraja = [GE,   # = 0
+          E,    # = 1
+          F,    # = 2
+          GF    # = 3
+          ]
 
-class Baraja:
-    def __init__(self):
-        self.baraja = {'GE': 2, 'E': 1, 'F': -1, 'GF': -2}
-
-    def mostrar(self):
-        """Crea una copia de la baraja identificándola con sus siglas."""
-        mano = []
-        for carta in self.baraja:
-            if carta == GE:
-                mano.append('[GE]')
-            elif carta == E:
-                mano.append('[E]')
-            elif carta == F:
-                mano.append('[F]')
-            elif carta == GF:
-                mano.append('[GF]')
-        print('\n', mano, '\n')
+def mostrar():
+    """Crea una copia de la baraja identificándola con sus siglas."""
+    mano = []
+    for carta in baraja:
+        if carta == GE:
+            mano.append('[GE]')
+        elif carta == E:
+            mano.append('[E]')
+        elif carta == F:
+            mano.append('[F]')
+        elif carta == GF:
+            mano.append('[GF]')
+    print('\n', mano, '\n')
 
 def barajar():
     """Baraja las cartas de forma aleatoria."""

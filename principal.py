@@ -10,7 +10,7 @@ def principal():
 
     print(f'Baraja descubierta:\n{Naipe.mostrar_baraja()}')
 
-    repartir_mesa(3)
+    repartir_mesa(1)
     mostrar_mesa()
 
     print(f'Naipes restantes:\n{Naipe.mostrar_baraja()}')
