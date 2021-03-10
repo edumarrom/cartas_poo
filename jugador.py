@@ -1,7 +1,7 @@
 from random import randint as aleatorio
 from carta import Naipe
 
-VIDA_INICIAL = 4
+VIDA_INICIAL = 0
 
 class Jugador:
     """
@@ -68,6 +68,10 @@ class Jugador:
         aux += self.mano()
         self.__mano = []
         Naipe.__baraja = aux
+
+    def borrar_jugador(jugador):
+        """Borra un jugador de la lista de jugadores."""
+        Jugador.jugadores().remove(jugador)
 
     @staticmethod
     def jugadores():

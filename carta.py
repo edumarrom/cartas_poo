@@ -188,6 +188,16 @@ class Naipe(Carta):
             return naipe1
         else: return naipe2
 
+    def sm_valores(naipes):
+        """Valores del 7 y medio."""
+        total = 0
+        for naipe in naipes:
+            if naipe.valor() in list(range(8, 11)):
+                total += 0.5
+            else:
+                total += naipe.valor()
+        return total
+
     # Métodos estáticos
     @staticmethod
     def generar_baraja():
