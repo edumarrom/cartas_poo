@@ -1,5 +1,5 @@
 from random import randint as aleatorio
-from carta import Carta
+from carta import Naipe
 
 VIDA_INICIAL = 4
 
@@ -31,7 +31,7 @@ class Jugador:
         return f"Jugador('{self.__nombre}', '{self.__vida}, {self.__bot}'')"
 
     def __str__(self):
-        return f'{self.nombre()} | Salud: {self.vida()} | Mano({len(self.mano())}):\n {Carta.mostrar_cartas(self.mano())}'
+        return f'{self.nombre()} | Salud: {self.vida()} | Mano({len(self.mano())}):\n {Naipe.mostrar_cartas(self.mano())}'
 
     @staticmethod
     def get_jugador(seleccion):
@@ -64,8 +64,10 @@ class Jugador:
         self.__mano += mano
 
     def devolver_mano(self):
-        # necesito que baraja sea una lista...
-        pass
+        aux = Naipe.baraja()
+        aux += self.mano()
+        self.__mano = []
+        Naipe.__baraja = aux
 
     @staticmethod
     def jugadores():
@@ -73,10 +75,11 @@ class Jugador:
 
     @staticmethod
     def nombre_aleatorio():
-        nombres = ('Lucía', 'Roberto', 'Belén', 'Alicia',
-            'Juan', 'Paloma', 'Natalia', 'Josemi','Andrés', 'Isabel', 'Pablo','Álex',
-            'Vicenta', 'Marisa', 'Concha', 'Mauri', 'Fernando',
-            'Emilio', 'Mariano', 'Paco'
+        nombres = (
+            'Lucía', 'Roberto', 'Belén', 'Alicia', 'Juan', 'Paloma', \
+            'Natalia', 'Josemi','Andrés', 'Isabel', 'Pablo','Álex', \
+            'Vicenta', 'Marisa', 'Concha', 'Mauri', 'Fernando', 'Emilio', \
+            'Mariano', 'Paco'
             )
         return nombres[aleatorio(0, (len(nombres) - 1))]
 
@@ -90,7 +93,10 @@ class Jugador:
 
     @staticmethod
     def asignar_humanos(num_jugadores):
-        """Creador interactivo de humanos. Solicita por entrada el nombre del jugador."""
+        """
+        Creador interactivo de humanos. Solicita por entrada el \
+            nombre del jugador
+        """
         for i in range(num_jugadores):
             try:
                 nombre_jugador = str(input('¿Nombre del jugador?: '))
@@ -100,7 +106,9 @@ class Jugador:
 
     @staticmethod
     def asignar_bots(num_bots):
-        """Creador interactivo de bots. Asigna nombres de forma automática."""
+        """
+        Creador interactivo de bots. Asigna nombres de forma automática
+        """
         while len(Jugador.jugadores()) < (num_bots+1)*2:
             nombre = Jugador.nombre_aleatorio()
             if Jugador.comprobar_nombre(nombre) is True:
@@ -109,6 +117,12 @@ class Jugador:
 
 
 class Humano(Jugador):
+    """
+    Clase Humano
+    ---
+    La clase Humano representa a un jugador humano de la partida. Se \
+        espera que estos jugadores tomen decisiones propias.
+    """
     def __init__(self, nombre):
         super().__init__(nombre, VIDA_INICIAL, False)
 
@@ -116,6 +130,12 @@ class Humano(Jugador):
         return f'Humano: {super().__str__()}'
 
 class Bot(Jugador):
+    """
+    Clase Bot
+    ---
+    La clase Bot representa a un jugador de la partida, controlado \
+        por la máquina.
+    """
     def __init__(self, nombre):
         super().__init__(nombre, VIDA_INICIAL, True)
 
