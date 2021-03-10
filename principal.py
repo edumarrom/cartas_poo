@@ -4,7 +4,9 @@ from jugador import Jugador
 def principal():
     Naipe.generar_baraja()
     Jugador.asignar_bots(4)
-    Naipe.barajar()
+    Naipe.mostrar_baraja()
+    Naipe.riflear()
+    Naipe.mostrar_baraja()
     repartir_mesa(3)
     mostrar_mesa()
 

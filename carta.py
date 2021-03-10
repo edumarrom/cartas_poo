@@ -62,11 +62,6 @@ class Carta:
         return Carta.__baraja
 
     @staticmethod
-    def barajar():
-        """Mezcla las cartas de la baraja de forma aleatoria."""
-        mezclar(Carta.baraja())
-
-    @staticmethod
     def get_carta(seleccion):
         """
         Devuelve una carta existente en la baraja a partir de su \
@@ -104,6 +99,59 @@ class Carta:
         for carta in Carta.baraja():
             resultado += (f'{carta.describir()}, ')
         return resultado
+
+    # Permutadores
+    @staticmethod
+    def barajar():
+        """Mezcla la baraja como lo haría un crupier."""
+        Naipe.lavar()
+        Naipe.rifflear()
+        Naipe.cortar()
+        Naipe.rifflear()
+        Naipe.cortar()
+        Naipe.rifflear()
+
+    @staticmethod
+    def lavar():
+        """Mezcla las cartas de la baraja de forma aleatoria."""
+        mezclar(Carta.baraja())
+
+    def cortar():
+        """Hace tres montos, y los intercala con el fondo arriba."""
+        baraja = Carta.baraja()
+        resultado = []
+        cima = baraja[:len(baraja)//3]
+        base = baraja[-len(baraja)//3:]
+        for carta in cima:
+            baraja.remove(carta)
+        for carta in base:
+            baraja.remove(carta)
+        resultado = base + cima + baraja
+        Carta.__baraja = resultado
+
+    @staticmethod
+    def rifflear():
+        """Separa la baraja en dos mitades y luego las intercala."""
+        baraja = Carta.baraja()
+        resultado = []
+        pila1 = baraja[:len(baraja)//2]
+        pila2 = baraja[-len(baraja)//2:]
+
+        for i in range((len(baraja)//2)):
+            pareja = [pila1[i], pila2[i]]
+            resultado += pareja
+        Carta.__baraja = resultado
+
+    @staticmethod
+    def arrastrar():
+        """Mezcla las cartas, haciendo parejas entre la cima y la base de la baraja."""
+        baraja = Carta.baraja()
+        resultado = []
+
+        for i in range((len(baraja)//2)):
+            pareja = [baraja[i], baraja[-(i+1)]]
+            resultado += pareja
+        Carta.__baraja = resultado
 
 class Naipe(Carta):
     """
@@ -145,8 +193,8 @@ class Naipe(Carta):
     def generar_baraja():
         """Genera una baraja de naipes española de 40 cartas."""
         palos = ['Oros', 'Copas', 'Espadas', 'Bastos']
-        valores = list(range(1, 11))
-        for palo in palos:
+        valores = list(range(1, 11))[::-1]
+        for palo in palos[::-1]:
             for valor in valores:
                 Naipe(palo, valor)
 
