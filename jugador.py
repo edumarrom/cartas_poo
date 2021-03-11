@@ -42,6 +42,10 @@ class Jugador:
         """
         return Jugador.jugadores()[seleccion]
 
+    @staticmethod
+    def limpiar_jugadores():
+        Jugador.__jugadores = []
+
     def numero(self):
         return self.__numero
 
