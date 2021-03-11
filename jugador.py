@@ -93,6 +93,7 @@ class Jugador:
 
     @staticmethod
     def comprobar_nombre(nombre):
+        """Comprueba si ya existe algun jugador con ese nombre."""
         resultado = True
         for jugador in Jugador.jugadores():
             if nombre == jugador.nombre():
@@ -117,11 +118,11 @@ class Jugador:
         """
         Creador interactivo de bots. Asigna nombres de forma automática
         """
-        while len(Jugador.jugadores()) < (num_bots+1)*2:
+        for i in range(num_bots):
             nombre = Jugador.nombre_aleatorio()
-            if Jugador.comprobar_nombre(nombre) is True:
-                Bot(nombre)
-                num_bots -= 1
+            while Jugador.comprobar_nombre(nombre) is not True:
+                nombre = Jugador.nombre_aleatorio()
+            Bot(nombre)
 
 
 class Humano(Jugador):

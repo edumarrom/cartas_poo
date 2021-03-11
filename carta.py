@@ -190,7 +190,7 @@ class Naipe(Carta):
 
     def sm_valores(naipes):
         """Valores del 7 y medio."""
-        total = 0.0
+        total = 0
         for naipe in naipes:
             if naipe.valor() in list(range(8, 11)):
                 total += 0.5

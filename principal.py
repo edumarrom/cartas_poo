@@ -4,7 +4,7 @@ from jugador import Jugador
 _tuto = False    # Auxiliar para controlar la disponibilidad del tutorial.
 _solitario = False
 _inicio = False
-def comenzar():
+def sietemedia():
     global _solitario
     global _inicio
     print('\nRepartidor.-¡Bienvenido de nuevo!')
@@ -15,8 +15,8 @@ def comenzar():
     Naipe.barajar()
     num_humanos = int(input('¿Cuántas personas quieres añadir?: '))
     Jugador.asignar_humanos(num_humanos)
-    # num_bots = int(input('¿Cuántos bots quieres añadir?: '))
-    # Jugador.asignar_bots(num_bots)
+    num_bots = int(input('¿Cuántos bots quieres añadir?: '))
+    Jugador.asignar_bots(num_bots)
 
     if len(Jugador.jugadores()) == 1:
         _solitario = True
@@ -24,7 +24,7 @@ def comenzar():
 
 def jugar():
     """Gestiona la partida."""
-    for jugador in Jugador.jugadores():
+    for jugador in list(Jugador.jugadores()):
         turno(jugador)
         comprobar_fin_jugador(jugador)
     comprobar_fin_juego()
@@ -91,7 +91,7 @@ def finalizar():
     Jugador.limpiar_jugadores()
     decision = repetir()
     if decision == True:
-        comenzar()
+        sietemedia()
     else:
         print('(El repartidor se desvanece en la oscuridad.)')
 
@@ -115,4 +115,4 @@ def tutorial():
         _tuto = True
 
 if __name__ == "__main__":
-    comenzar()
+    sietemedia()
