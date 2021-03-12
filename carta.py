@@ -144,7 +144,10 @@ class Carta:
 
     @staticmethod
     def arrastrar():
-        """Mezcla las cartas, haciendo parejas entre la cima y la base de la baraja."""
+        """
+        Mezcla las cartas, haciendo parejas con la cima y la base de \
+            la baraja.
+        """
         baraja = Carta.baraja()
         resultado = []
 

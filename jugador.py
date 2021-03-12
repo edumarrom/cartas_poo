@@ -1,7 +1,7 @@
 from random import randint as aleatorio
 from carta import Naipe
 
-VIDA_INICIAL = 0
+VIDA_INICIAL = 6
 
 class Jugador:
     """
@@ -25,18 +25,21 @@ class Jugador:
             Jugador.__jugadores.append(self)
             self.__mano = []
         else:
-            print('Lo sentimos, pero ya existe un jugador con el nombre "'+ nombre +'".')
+            print('Lo sentimos, pero ya existe un jugador con el '\
+                f'nombre "{nombre}".')
 
     def __repr__(self):
         return f"Jugador('{self.__nombre}', '{self.__vida}, {self.__bot}'')"
 
     def __str__(self):
-        return f'{self.nombre()} | Salud: {self.vida()} | Mano({len(self.mano())}):\n {Naipe.mostrar_cartas(self.mano())}'
+        return f'{self.nombre()} | Salud: {self.vida()} | '\
+            f'Mano({len(self.mano())}):\n {Naipe.mostrar_cartas(self.mano())}'
 
     @staticmethod
     def get_jugador(seleccion):
         """
-        Devuelve una jugador existente en la lista a partir de su número.\n
+        Devuelve un jugador existente en la lista, a partir de su nº.
+
         Parámetros:
             - seleccion: int -> El n-ésima jugador de la lista.
         """
@@ -60,6 +63,9 @@ class Jugador:
 
     def mano(self):
         return self.__mano
+
+    def set_vida(self, vida):
+        self.__vida = vida
 
     def set_mano(self, mano):
         self.__mano = mano
